@@ -59,27 +59,136 @@ test1
 <script type="text/javascript">
 
 var questions = [
-                "What does HTML stand for?","Who is making the Web standards?",
-                "What does CSS stand for?","Which is the correct CSS syntax?",
-                "How do you insert a comment in a CSS file?","What is the correct HTML for inserting an image?",
-                "How can you make a list that lists the items with numbers?","How can you open a link in a new browser window?",
-                "Choose the correct HTML tag for the largest heading.","What is the correct HTML for creating a hyperlink?",
-                "How do you display hyperlinks without an underline?","How do you make a list that lists its items with squares?",
-                "In what form are style rules presented?","Which property applies a color to text?",
-                "What does the ID selector do?","What selector should you use when applying a style to multiple elements?",
-                "Which of the following attributes of the <img> tag displays alternate text for the image?","Where in the HTML document is the correct place to refer to an external style sheet?",
-                "Which HTML tag is used to define an internal style sheet?","Which HTML attribute is used to define inline styles?"
+
+           
+
+                {question:"Who is making the Web standards?",
+                answer1:{text:"Mozilla",value:false},
+                answer2:{text:"Microsoft",value:false},
+                answer3:{text:"The World Wide Web Consortium", value:true}
+                },
+
+                {question:"What does CSS stand for?",
+                answer1:{text:"Creative Style Sheets",value:false},
+                answer2:{text:"Colorful Style Sheets",value:false},
+                answer3:{text:"Cascading Style Sheets",value:true}
+                },
+
+                {question:"Which is the correct CSS syntax?",
+                answer1:{text:"body:color=black",value:false},
+                answer2:{text:"{body;color:black}",value:false},
+                answer3:{text:"body {color: black}",value:true}
+                },
+
+                {question:"How do you insert a comment in a CSS file?",
+                answer1:{text:"* this is a comment */",value:true},
+                answer2:{text:"/ this is a comment", value:false},
+                answer3:{text:"// this is a comment //", value:false}
+                },
+
+                {question:"How can you make a list that lists the items with numbers?",
+                answer1:{text:"ol",value:true},
+                answer2:{text:"dl",value:false},
+                answer3:{text:"ul", value:false}
+                },
+
+                {question:"Choose the correct HTML tag for the largest heading.",
+                answer1:{text:"head",value:false},
+                answer2:{text:"h1",value:false},
+                answer3:{text:"header",value:true}
+                },
+
+                {question:"How do you display hyperlinks without an underline?",
+                answer1:{text:"a {text-decoration:none}",value:true},
+                answer2:{text:"a {underline:none}",value:false},
+                answer3:{text:"a {decoration:no underline}",value:false}
+                },
+
+                {question:"How do you make a list that lists its items with squares?",
+                answer1:{text:"list-style-type: square",value:true},
+                answer2:{text:"type: 2",value:false},
+                answer3:{text:"list-type: square",value:false}
+                },
+
+                {question:"In what form are style rules presented?",
+                answer1:{text:"selector { property= value }",value:false},
+                answer2:{text:"selector ( property: value )",value:true},
+                answer3:{text:"selector ( property= value )",value:false}
+                },
+
+                {question:"Which property applies a color to text?",
+                answer1:{text:"text-color",value:false},
+                answer2:{text:"color",value:true},
+                answer3:{text:"background-color",value:false}
+                },
+
+                {question:"What does the ID selector do?",
+                answer1:{text:"Apply the style to a specific element", value:true},
+                answer2:{text:"Apply the style to all the elements",value:false},
+                answer3:{text:"Apply the style to a group of elements",value:false}
+                },
+
+                {question:"What selector should you use when applying a style to multiple elements?",
+                answer1:{text:"ID", value:false},
+                answer2:{text:"Class", value:true},
+                answer3:{text:"Type", value:false}
+                },
+
+                {question:"Which of the following attributes of the <img> tag displays alternate text for the image?",
+                answer1:{text:"text",value:false},
+                answer2:{text:"caption",value:false},
+                answer3:{text:"alt",value:true}
+                },
+
+                {question:"Where in the HTML document is the correct place to refer to an external style sheet?",
+                answer1:{text:"In the <body> section",value:false},
+                answer2:{text:"At the top of the document",value:false},
+                answer3:{text:"In the <head> section",value:true}
+                },
+
+                {question:"Which HTML tag is used to define an internal style sheet?",
+                answer1:{text:"<css>",value:false},
+                answer2:{text:"<style>",value:true},
+                answer3:{text:"<script>",value:false}
+                },
+
+                {question:"Which HTML attribute is used to define inline styles?",
+                answer1:{text:"styles",value:false},
+                answer2:{text:"style",value:true},
+                answer3:{text:"class",value:false}
+                },
+
+                {question:"What does HTML stand for?",
+                answer1:{text:"Hyper Text Markup Language",value:true},
+                answer2:{text:"Home Tool Markup Language",value:true},
+                answer3:{text:"Hyperlinks and Text Markup Language",value:false}
+                },
+
                 ];
 
-var answers = [
-                question1 ["Hyper Text Markup Language","Home Tool Markup Language","Hyperlinks and Text Markup Language"],
-                question2 ["Mozilla","Microsoft","The World Wide Web Consortium"],
-                question3 ["Colorful Style Sheets","Computer Style Sheets","Cascading Style Sheets"],
-                question4 ["{body;color:black}","{body:color=black(body}","body {color: black}"],
-                question5 ["/* this is a comment */","// this is a comment","// this is a comment //"] 
 
-];
+var questionTextField = $("#questions");
+var buttonAnswer1 = $("#answer1");
+var buttonAnswer2 = $("#answer2");
+var buttonAnswer3 = $("#answer3");
+var i = "0";
+var finalScore = 0;
 
+$(".buttons").on("click", function(){
+    
+    questionTextField.text(questions[i].question);
+    buttonAnswer1.text(questions[i].answer1.text);
+    buttonAnswer2.text(questions[i].answer2.text);
+    buttonAnswer3.text(questions[i].answer3.text);
+
+    if (i+1<questions.length){
+        i = parseInt(i) + 1;
+    
+    }
+    
+    
+ 
+})
 
 
 
