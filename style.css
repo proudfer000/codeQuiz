@@ -43,7 +43,7 @@ body {
     width: 100%;
 
 }
-#start, #finish{
+#start, #finish , #submit{
     width: auto;
 }
 
@@ -51,6 +51,11 @@ body {
     border: 2px solid black;
     cursor: pointer;
     box-shadow: 5px 10px 18px #888888;
+  }
+
+ 
+  #finalScore{
+      display: none;
   }
 
   #questions{

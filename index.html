@@ -25,6 +25,19 @@
             Finish Quiz
         </button>
 
+     
+
+        <div id="finalScore">
+
+            <h2>
+                Final Score <br>
+                <span id="score"></span>
+            </h2>
+
+            <button id="submit" class="buttons">
+                Submit score
+            </button>
+        </div>
     </header>
 
 
@@ -181,6 +194,7 @@ var startBtn = $("#start");
 var timeLeft = questions.length*5;
 var i = 0;
 var finalScore = 0;
+var timer;
 
 function questionnaire (){
 
@@ -192,8 +206,32 @@ function questionnaire (){
     if (i+1<questions.length){
         i = parseInt(i) + 1;
     }
-    
-    
+    if (i+1===questions.length){
+        finishedQuestionnaire ();
+    }   
+}
+
+function finishedQuestionnaire (){
+    $("#finalScore").css({display:"block"});
+    $("#finalScore").addClass("fade-in");
+    $("#score").text(Math.floor(finalScore));
+    $("section").css({display:"none"});
+    clearInterval(timer);
+
+
+} 
+
+function startTimer(){
+        timer = setInterval(function(){
+        timeLeft = timeLeft-1;
+        $("#timer").text("Remaining time " + timeLeft);
+        if(timeLeft==0){
+            finishedQuestionnaire ();
+           
+            
+
+        }
+        },1000);
 }
 
 buttonAnswer1.on("click", function(){
@@ -230,19 +268,13 @@ buttonAnswer3.on("click", function(){
 })
 
 startBtn.on("click", function(){
+    startTimer();
     $("section").css({display:"block"});
     $("section").addClass("fade-in");
     startBtn.css({display:"none"});
     $("h1").css({display:"none"});
 
-    var timer = setInterval(function(){
-        timeLeft = timeLeft-1;
-        $("#timer").text("Remaining time " + timeLeft);
-        if(timeLeft==0){
-            clearInterval(timer);
-        }
-        },1000);
-
+  
     questionTextField.text(questions[i].question);
     buttonAnswer1.text(questions[i].answer1.text);
     buttonAnswer2.text(questions[i].answer2.text);
