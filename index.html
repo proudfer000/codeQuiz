@@ -57,6 +57,10 @@
 
         </ul>
 
+        <div id="timer">
+
+        </div>
+
     </section>
 
 <script src="https://code.jquery.com/jquery.js"></script>
@@ -174,6 +178,7 @@ var buttonAnswer1 = $("#answer1");
 var buttonAnswer2 = $("#answer2");
 var buttonAnswer3 = $("#answer3");
 var startBtn = $("#start");
+var timeLeft = questions.length*5;
 var i = 0;
 var finalScore = 0;
 
@@ -230,13 +235,24 @@ startBtn.on("click", function(){
     startBtn.css({display:"none"});
     $("h1").css({display:"none"});
 
+    var timer = setInterval(function(){
+        timeLeft = timeLeft-1;
+        $("#timer").text("Remaining time " + timeLeft);
+        if(timeLeft==0){
+            clearInterval(timer);
+        }
+        },1000);
+
     questionTextField.text(questions[i].question);
     buttonAnswer1.text(questions[i].answer1.text);
     buttonAnswer2.text(questions[i].answer2.text);
     buttonAnswer3.text(questions[i].answer3.text);
 
+  
     
 })
+
+
 
 </script>
 
