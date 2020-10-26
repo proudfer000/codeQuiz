@@ -7,60 +7,62 @@
 
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery.js"></script>
+    
     
 </head>
 <body>
+
     <header>
+
         <h1>
             Coding Quiz Challenge!
         </h1>
-        <button>
-            start Quiz
+        <button id="start" class="buttons">
+            Start Quiz
+        </button>
+
+        <button id="finish" class="buttons">
+            Finish Quiz
         </button>
 
     </header>
-</body>
+
+
+
     <section>
         <div>
             <p id="questions">
-test questions
+                test questions
             </p>
         </div>
         
         <ul>
             <li>
                 <button id="answer1" class="buttons">
-test1
+
                 </button>
             </li>
 
             <li>
                 <button id="answer2" class="buttons">
-                    test2
+                  
                 </button>
             </li>
 
             <li>
                 <button id="answer3" class="buttons">
-                    test2
+                   
                 </button>
             </li>
-
-
-
-            
 
         </ul>
 
     </section>
 
-
+<script src="https://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 
 var questions = [
-
-           
 
                 {question:"Who is making the Web standards?",
                 answer1:{text:"Mozilla",value:false},
@@ -160,7 +162,7 @@ var questions = [
 
                 {question:"What does HTML stand for?",
                 answer1:{text:"Hyper Text Markup Language",value:true},
-                answer2:{text:"Home Tool Markup Language",value:true},
+                answer2:{text:"Home Tool Markup Language",value:false},
                 answer3:{text:"Hyperlinks and Text Markup Language",value:false}
                 },
 
@@ -171,29 +173,70 @@ var questionTextField = $("#questions");
 var buttonAnswer1 = $("#answer1");
 var buttonAnswer2 = $("#answer2");
 var buttonAnswer3 = $("#answer3");
-var i = "0";
+var startBtn = $("#start");
+var i = 0;
 var finalScore = 0;
 
-$(".buttons").on("click", function(){
+function questionnaire (){
+
+    questionTextField.text(questions[i].question);
+    buttonAnswer1.text(questions[i].answer1.text);
+    buttonAnswer2.text(questions[i].answer2.text);
+    buttonAnswer3.text(questions[i].answer3.text);
+    console.log(i);
+    if (i+1<questions.length){
+        i = parseInt(i) + 1;
+    }
     
+    
+}
+
+buttonAnswer1.on("click", function(){
+    questionnaire ();
+
+    if(questions[i].answer1.value===true){
+        finalScore = finalScore + 100/questions.length;
+            console.log(finalScore);
+            console.log(questions[i].answer1.value);
+            console.log(i);
+    }
+})
+
+buttonAnswer2.on("click", function(){
+    questionnaire ();
+
+    if(questions[i].answer2.value===true){
+        finalScore = finalScore + 100/questions.length;
+            console.log(finalScore);
+            console.log(questions[i].answer2.value);
+            console.log(i);
+    }
+})
+
+buttonAnswer3.on("click", function(){
+    questionnaire ();
+
+    if(questions[i].answer3.value===true){
+        finalScore = finalScore + 100/questions.length;
+            console.log(finalScore);
+            console.log(questions[i].answer3.value);
+            console.log(i);
+    }
+})
+
+startBtn.on("click", function(){
+    $("section").css({display:"block"});
+    $("section").addClass("fade-in");
+    startBtn.css({display:"none"});
+    $("h1").css({display:"none"});
+
     questionTextField.text(questions[i].question);
     buttonAnswer1.text(questions[i].answer1.text);
     buttonAnswer2.text(questions[i].answer2.text);
     buttonAnswer3.text(questions[i].answer3.text);
 
-    if (i+1<questions.length){
-        i = parseInt(i) + 1;
     
-    }
-    
-    
- 
 })
-
-
-
-
-
 
 </script>
 
