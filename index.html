@@ -34,9 +34,23 @@
                 <span id="score"></span>
             </h2>
 
+            <input id="nameInput" type="text" value="">
+            <br>
+
             <button id="submit" class="buttons">
-                Submit score
+                Submit Score
             </button>
+
+            <div>
+                <h3>
+                    Highest Score <br>
+                    <span id="highestScoreName">
+                    </span>
+                    <span id="higherScore">
+
+                    </span>
+                </h3>
+            </div>
         </div>
     </header>
 
@@ -191,11 +205,13 @@ var buttonAnswer1 = $("#answer1");
 var buttonAnswer2 = $("#answer2");
 var buttonAnswer3 = $("#answer3");
 var startBtn = $("#start");
+var submitFinalScore = $("#submit");
+var nameInput = $("#nameInput");
 var timeLeft = questions.length*5;
 var i = 0;
 var finalScore = 0;
 var timer;
-
+var higherScore;
 function questionnaire (){
 
     questionTextField.text(questions[i].question);
@@ -216,6 +232,8 @@ function finishedQuestionnaire (){
     $("#finalScore").addClass("fade-in");
     $("#score").text(Math.floor(finalScore));
     $("section").css({display:"none"});
+    timeLeft=questions.length*5;
+    i=0;
     clearInterval(timer);
 
 
@@ -233,6 +251,34 @@ function startTimer(){
         }
         },1000);
 }
+
+function getSavedScore() {
+
+  var lastScore= JSON.parse(localStorage.getItem("lastScore"));
+  if (lastScore) {
+    if (lastScore.score) {
+        $("#higherScore").text(lastScore.score);
+    }
+
+    if (lastScore.name) {
+    $("#highestScoreName").text(lastScore.name);
+    }
+  }
+
+}
+
+
+function saveScore() {
+  localStorage.setItem(
+    "lastScore",
+    JSON.stringify({
+        score: finalScore,
+        name: nameInput
+    })
+  );
+}
+
+
 
 buttonAnswer1.on("click", function(){
     questionnaire ();
@@ -279,12 +325,14 @@ startBtn.on("click", function(){
     buttonAnswer1.text(questions[i].answer1.text);
     buttonAnswer2.text(questions[i].answer2.text);
     buttonAnswer3.text(questions[i].answer3.text);
-
-  
     
 })
 
+submitFinalScore.on("click", function(){
+    saveScore();
+})
 
+getSavedScore();
 
 </script>
 
