@@ -206,7 +206,7 @@ var buttonAnswer2 = $("#answer2");
 var buttonAnswer3 = $("#answer3");
 var startBtn = $("#start");
 var submitFinalScore = $("#submit");
-var nameInput = $("#nameInput");
+var nameInput = $("#nameInput").val();
 var timeLeft = questions.length*5;
 var i = 0;
 var finalScore = 0;
@@ -257,11 +257,13 @@ function getSavedScore() {
   var lastScore= JSON.parse(localStorage.getItem("lastScore"));
   if (lastScore) {
     if (lastScore.score) {
-        $("#higherScore").text(lastScore.score);
+        higherScore = (Math.floor(lastScore.score));
+        $("#higherScore").text(higherScore);
     }
 
     if (lastScore.name) {
-    $("#highestScoreName").text(lastScore.name);
+        var nameOutput = lastScore.name;
+    $("#highestScoreName").text(nameOutput);
     }
   }
 
@@ -272,7 +274,7 @@ function saveScore() {
   localStorage.setItem(
     "lastScore",
     JSON.stringify({
-        score: finalScore,
+        score: higherScore,
         name: nameInput
     })
   );
@@ -329,7 +331,10 @@ startBtn.on("click", function(){
 })
 
 submitFinalScore.on("click", function(){
+    higherScore = finalScore;
+
     saveScore();
+    
 })
 
 getSavedScore();
