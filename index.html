@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,10 @@
 
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-    
-    
+
+
 </head>
+
 <body>
 
     <header>
@@ -25,7 +27,7 @@
             Finish Quiz
         </button>
 
-     
+
 
         <div id="finalScore">
 
@@ -34,24 +36,18 @@
                 <span id="score"></span>
             </h2>
 
-            <input id="nameInput" type="text" value="">
+            <label>Insert name here:</label>
+            <br>
+            <input id="nameInput" type="text" placeholder="Please Insert name here" value="">
             <br>
 
             <button id="submit" class="buttons">
                 Submit Score
             </button>
 
-            <div>
-                <h3>
-                    Highest Score <br>
-                    <span id="highestScoreName">
-                    </span>
-                    <span id="higherScore">
-
-                    </span>
-                </h3>
-            </div>
         </div>
+
+
     </header>
 
 
@@ -62,7 +58,7 @@
                 test questions
             </p>
         </div>
-        
+
         <ul>
             <li>
                 <button id="answer1" class="buttons">
@@ -72,13 +68,13 @@
 
             <li>
                 <button id="answer2" class="buttons">
-                  
+
                 </button>
             </li>
 
             <li>
                 <button id="answer3" class="buttons">
-                   
+
                 </button>
             </li>
 
@@ -90,256 +86,305 @@
 
     </section>
 
-<script src="https://code.jquery.com/jquery.js"></script>
-<script type="text/javascript">
 
-var questions = [
+    <div>
+        <h3 id="higherScoreData">
+            Highest Score
+            <br>
+            <span id="highestScoreName"></span>
+            <br>
+            <span id="higherScore"></span>
 
-                {question:"Who is making the Web standards?",
-                answer1:{text:"Mozilla",value:false},
-                answer2:{text:"Microsoft",value:false},
-                answer3:{text:"The World Wide Web Consortium", value:true}
-                },
+        <button id="tryAgain" class="buttons">
+            Try Again
+        </button>
+        </h3>
 
-                {question:"What does CSS stand for?",
-                answer1:{text:"Creative Style Sheets",value:false},
-                answer2:{text:"Colorful Style Sheets",value:false},
-                answer3:{text:"Cascading Style Sheets",value:true}
-                },
-
-                {question:"Which is the correct CSS syntax?",
-                answer1:{text:"body:color=black",value:false},
-                answer2:{text:"{body;color:black}",value:false},
-                answer3:{text:"body {color: black}",value:true}
-                },
-
-                {question:"How do you insert a comment in a CSS file?",
-                answer1:{text:"* this is a comment */",value:true},
-                answer2:{text:"/ this is a comment", value:false},
-                answer3:{text:"// this is a comment //", value:false}
-                },
-
-                {question:"How can you make a list that lists the items with numbers?",
-                answer1:{text:"ol",value:true},
-                answer2:{text:"dl",value:false},
-                answer3:{text:"ul", value:false}
-                },
-
-                {question:"Choose the correct HTML tag for the largest heading.",
-                answer1:{text:"head",value:false},
-                answer2:{text:"h1",value:false},
-                answer3:{text:"header",value:true}
-                },
-
-                {question:"How do you display hyperlinks without an underline?",
-                answer1:{text:"a {text-decoration:none}",value:true},
-                answer2:{text:"a {underline:none}",value:false},
-                answer3:{text:"a {decoration:no underline}",value:false}
-                },
-
-                {question:"How do you make a list that lists its items with squares?",
-                answer1:{text:"list-style-type: square",value:true},
-                answer2:{text:"type: 2",value:false},
-                answer3:{text:"list-type: square",value:false}
-                },
-
-                {question:"In what form are style rules presented?",
-                answer1:{text:"selector { property= value }",value:false},
-                answer2:{text:"selector ( property: value )",value:true},
-                answer3:{text:"selector ( property= value )",value:false}
-                },
-
-                {question:"Which property applies a color to text?",
-                answer1:{text:"text-color",value:false},
-                answer2:{text:"color",value:true},
-                answer3:{text:"background-color",value:false}
-                },
-
-                {question:"What does the ID selector do?",
-                answer1:{text:"Apply the style to a specific element", value:true},
-                answer2:{text:"Apply the style to all the elements",value:false},
-                answer3:{text:"Apply the style to a group of elements",value:false}
-                },
-
-                {question:"What selector should you use when applying a style to multiple elements?",
-                answer1:{text:"ID", value:false},
-                answer2:{text:"Class", value:true},
-                answer3:{text:"Type", value:false}
-                },
-
-                {question:"Which of the following attributes of the <img> tag displays alternate text for the image?",
-                answer1:{text:"text",value:false},
-                answer2:{text:"caption",value:false},
-                answer3:{text:"alt",value:true}
-                },
-
-                {question:"Where in the HTML document is the correct place to refer to an external style sheet?",
-                answer1:{text:"In the <body> section",value:false},
-                answer2:{text:"At the top of the document",value:false},
-                answer3:{text:"In the <head> section",value:true}
-                },
-
-                {question:"Which HTML tag is used to define an internal style sheet?",
-                answer1:{text:"<css>",value:false},
-                answer2:{text:"<style>",value:true},
-                answer3:{text:"<script>",value:false}
-                },
-
-                {question:"Which HTML attribute is used to define inline styles?",
-                answer1:{text:"styles",value:false},
-                answer2:{text:"style",value:true},
-                answer3:{text:"class",value:false}
-                },
-
-                {question:"What does HTML stand for?",
-                answer1:{text:"Hyper Text Markup Language",value:true},
-                answer2:{text:"Home Tool Markup Language",value:false},
-                answer3:{text:"Hyperlinks and Text Markup Language",value:false}
-                },
-
-                ];
+       
+    </div>
 
 
-var questionTextField = $("#questions");
-var buttonAnswer1 = $("#answer1");
-var buttonAnswer2 = $("#answer2");
-var buttonAnswer3 = $("#answer3");
-var startBtn = $("#start");
-var submitFinalScore = $("#submit");
-var nameInput = $("#nameInput").val();
-var timeLeft = questions.length*5;
-var i = 0;
-var finalScore = 0;
-var timer;
-var higherScore;
-function questionnaire (){
-
-    questionTextField.text(questions[i].question);
-    buttonAnswer1.text(questions[i].answer1.text);
-    buttonAnswer2.text(questions[i].answer2.text);
-    buttonAnswer3.text(questions[i].answer3.text);
-    console.log(i);
-    if (i+1<questions.length){
-        i = parseInt(i) + 1;
-    }
-    if (i+1===questions.length){
-        finishedQuestionnaire ();
-    }   
-}
-
-function finishedQuestionnaire (){
-    $("#finalScore").css({display:"block"});
-    $("#finalScore").addClass("fade-in");
-    $("#score").text(Math.floor(finalScore));
-    $("section").css({display:"none"});
-    timeLeft=questions.length*5;
-    i=0;
-    clearInterval(timer);
 
 
-} 
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript">
 
-function startTimer(){
-        timer = setInterval(function(){
-        timeLeft = timeLeft-1;
-        $("#timer").text("Remaining time " + timeLeft);
-        if(timeLeft==0){
-            finishedQuestionnaire ();
-           
-            
+$(document).ready(function() {
+        var questions = [
+
+            {
+                question: "Who is making the Web standards?",
+                answer1: { text: "Mozilla", value: false },
+                answer2: { text: "Microsoft", value: false },
+                answer3: { text: "The World Wide Web Consortium", value: true }
+            },
+
+            {
+                question: "What does CSS stand for?",
+                answer1: { text: "Creative Style Sheets", value: false },
+                answer2: { text: "Colorful Style Sheets", value: false },
+                answer3: { text: "Cascading Style Sheets", value: true }
+            },
+
+            {
+                question: "Which is the correct CSS syntax?",
+                answer1: { text: "body:color=black", value: false },
+                answer2: { text: "{body;color:black}", value: false },
+                answer3: { text: "body {color: black}", value: true }
+            },
+
+            {
+                question: "How do you insert a comment in a CSS file?",
+                answer1: { text: "* this is a comment */", value: true },
+                answer2: { text: "/ this is a comment", value: false },
+                answer3: { text: "// this is a comment //", value: false }
+            },
+
+            {
+                question: "How can you make a list that lists the items with numbers?",
+                answer1: { text: "ol", value: true },
+                answer2: { text: "dl", value: false },
+                answer3: { text: "ul", value: false }
+            },
+
+            {
+                question: "Choose the correct HTML tag for the largest heading.",
+                answer1: { text: "head", value: false },
+                answer2: { text: "h1", value: false },
+                answer3: { text: "header", value: true }
+            },
+
+            {
+                question: "How do you display hyperlinks without an underline?",
+                answer1: { text: "a {text-decoration:none}", value: true },
+                answer2: { text: "a {underline:none}", value: false },
+                answer3: { text: "a {decoration:no underline}", value: false }
+            },
+
+            {
+                question: "How do you make a list that lists its items with squares?",
+                answer1: { text: "list-style-type: square", value: true },
+                answer2: { text: "type: 2", value: false },
+                answer3: { text: "list-type: square", value: false }
+            },
+
+            {
+                question: "In what form are style rules presented?",
+                answer1: { text: "selector { property= value }", value: false },
+                answer2: { text: "selector ( property: value )", value: true },
+                answer3: { text: "selector ( property= value )", value: false }
+            },
+
+            {
+                question: "Which property applies a color to text?",
+                answer1: { text: "text-color", value: false },
+                answer2: { text: "color", value: true },
+                answer3: { text: "background-color", value: false }
+            },
+
+            {
+                question: "What does the ID selector do?",
+                answer1: { text: "Apply the style to a specific element", value: true },
+                answer2: { text: "Apply the style to all the elements", value: false },
+                answer3: { text: "Apply the style to a group of elements", value: false }
+            },
+
+            {
+                question: "What selector should you use when applying a style to multiple elements?",
+                answer1: { text: "ID", value: false },
+                answer2: { text: "Class", value: true },
+                answer3: { text: "Type", value: false }
+            },
+
+            {
+                question: "Which of the following attributes of the <img> tag displays alternate text for the image?",
+                answer1: { text: "text", value: false },
+                answer2: { text: "caption", value: false },
+                answer3: { text: "alt", value: true }
+            },
+
+            {
+                question: "Where in the HTML document is the correct place to refer to an external style sheet?",
+                answer1: { text: "In the <body> section", value: false },
+                answer2: { text: "At the top of the document", value: false },
+                answer3: { text: "In the <head> section", value: true }
+            },
+
+            {
+                question: "Which HTML tag is used to define an internal style sheet?",
+                answer1: { text: "<css>", value: false },
+                answer2: { text: "<style>", value: true },
+                answer3: { text: "<script>", value: false }
+            },
+
+            {
+                question: "Which HTML attribute is used to define inline styles?",
+                answer1: { text: "styles", value: false },
+                answer2: { text: "style", value: true },
+                answer3: { text: "class", value: false }
+            },
+
+            {
+                question: "What does HTML stand for?",
+                answer1: { text: "Hyper Text Markup Language", value: true },
+                answer2: { text: "Home Tool Markup Language", value: false },
+                answer3: { text: "Hyperlinks and Text Markup Language", value: false }
+            },
+
+        ];
+
+
+        var questionTextField = $("#questions");
+        var buttonAnswer1 = $("#answer1");
+        var buttonAnswer2 = $("#answer2");
+        var buttonAnswer3 = $("#answer3");
+        var startBtn = $("#start");
+        var submitFinalScore = $("#submit");
+        var tryAgainBtn = $("#tryAgain");
+        var nameInput = $("#nameInput").val();
+        var nameOutput;
+        var timeLeft = questions.length * 5;
+        var i = 0;
+        var finalScore = 0;
+
+        var timer;
+        var latestInputName;
+        var higherScore;
+
+
+        function questionnaire() {
+
+            questionTextField.text(questions[i].question);
+            buttonAnswer1.text(questions[i].answer1.text);
+            buttonAnswer2.text(questions[i].answer2.text);
+            buttonAnswer3.text(questions[i].answer3.text);
+            i = parseInt(i) + 1;
+            console.log(i);
+
+            if (i === questions.length) {
+                finishedQuestionnaire();
+            }
+        }
+
+        function finishedQuestionnaire() {
+            $("#finalScore").css({ display: "block" });
+            $("#finalScore").addClass("fade-in");
+            $("#score").text(Math.floor(finalScore));
+            $("section").css({ display: "none" });
+            timeLeft = questions.length * 5;
+            i = 0;
+            clearInterval(timer);
+        }
+
+        function startTimer() {
+            timer = setInterval(function () {
+                timeLeft = timeLeft - 1;
+                $("#timer").text("Remaining time " + timeLeft);
+                if (timeLeft == 0) {
+                    finishedQuestionnaire();
+                }
+            }, 1000);
+        }
+
+        function getSavedScore() {
+
+            var lastScore = JSON.parse(localStorage.getItem("lastScore"));
+            if (lastScore) {
+                if (lastScore.score) {
+                    higherScore = (Math.floor(lastScore.score));
+                    $("#higherScore").text(higherScore + " Points");
+                }
+
+                if (lastScore.name) {
+                    latestInputName = lastScore.name;
+                    $("#highestScoreName").text(latestInputName);
+                }
+            }
 
         }
-        },1000);
-}
-
-function getSavedScore() {
-
-  var lastScore= JSON.parse(localStorage.getItem("lastScore"));
-  if (lastScore) {
-    if (lastScore.score) {
-        higherScore = (Math.floor(lastScore.score));
-        $("#higherScore").text(higherScore);
-    }
-
-    if (lastScore.name) {
-        var nameOutput = lastScore.name;
-    $("#highestScoreName").text(nameOutput);
-    }
-  }
-
-}
 
 
-function saveScore() {
-  localStorage.setItem(
-    "lastScore",
-    JSON.stringify({
-        score: higherScore,
-        name: nameInput
-    })
-  );
-}
+        function saveScore() {
+            higherScore = finalScore;
+            localStorage.setItem(
+                "lastScore",
+                JSON.stringify({
+                    score: higherScore,
+                    name: nameInput
+                })
+            );
+        }
 
 
+        buttonAnswer1.on("click", function () {
 
-buttonAnswer1.on("click", function(){
-    questionnaire ();
+            if (questions[i].answer1.value === true) {
+                finalScore = finalScore + 100 / questions.length;
+                console.log(finalScore);
+                console.log(questions[i].answer1.value);
+                console.log(i);
+            }
+            questionnaire();
+        })
 
-    if(questions[i].answer1.value===true){
-        finalScore = finalScore + 100/questions.length;
-            console.log(finalScore);
-            console.log(questions[i].answer1.value);
-            console.log(i);
-    }
-})
+        buttonAnswer2.on("click", function () {
 
-buttonAnswer2.on("click", function(){
-    questionnaire ();
 
-    if(questions[i].answer2.value===true){
-        finalScore = finalScore + 100/questions.length;
-            console.log(finalScore);
-            console.log(questions[i].answer2.value);
-            console.log(i);
-    }
-})
+            if (questions[i].answer2.value === true) {
+                finalScore = finalScore + 100 / questions.length;
+                console.log(finalScore);
+                console.log(questions[i].answer2.value);
+                console.log(i);
+            }
+            questionnaire();
+        })
 
-buttonAnswer3.on("click", function(){
-    questionnaire ();
+        buttonAnswer3.on("click", function () {
 
-    if(questions[i].answer3.value===true){
-        finalScore = finalScore + 100/questions.length;
-            console.log(finalScore);
-            console.log(questions[i].answer3.value);
-            console.log(i);
-    }
-})
+            if (questions[i].answer3.value === true) {
+                finalScore = finalScore + 100 / questions.length;
+                console.log(finalScore);
+                console.log(questions[i].answer3.value);
+                console.log(i);
+            }
+            questionnaire();
+        })
 
-startBtn.on("click", function(){
-    startTimer();
-    $("section").css({display:"block"});
-    $("section").addClass("fade-in");
-    startBtn.css({display:"none"});
-    $("h1").css({display:"none"});
+        startBtn.on("click", function () {
+            startTimer();
+            $("section").css({ display: "block" });
+            $("section").addClass("fade-in");
+            startBtn.css({ display: "none" });
+            $("h1").css({ display: "none" });
 
-  
-    questionTextField.text(questions[i].question);
-    buttonAnswer1.text(questions[i].answer1.text);
-    buttonAnswer2.text(questions[i].answer2.text);
-    buttonAnswer3.text(questions[i].answer3.text);
-    
-})
+            questionnaire();
 
-submitFinalScore.on("click", function(){
-    higherScore = finalScore;
+        })
 
-    saveScore();
-    
-})
+        submitFinalScore.on("click", function () {
+            $("#higherScore").text(higherScore + "Points");
+            $("#highestScoreName").text(nameInput);
+            $("#finalScore").css({ display: "none" });
+            $("#nameInput").attr("value",);
+            tryAgainBtn.css({ display: "block" });
+            saveScore();
+            finalScore = 0;
+        })
 
-getSavedScore();
+        tryAgainBtn.on("click", function(){
+            $("section").css({ display: "block" });
+            $("section").addClass("fade-in");
+            questionnaire();
+            startTimer();
+            tryAgainBtn.css({ display: "none" });
 
-</script>
+        })
+
+
+        getSavedScore();
+    });
+    </script>
 
 </body>
+
 </html>

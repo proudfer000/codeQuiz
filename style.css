@@ -8,6 +8,7 @@
 body {
     font-size: 14px;
     background-color: #BCDBD7;
+   
   }
 
   header {
@@ -22,12 +23,11 @@ body {
     }
 
     section {
-    padding: 20px;
-    max-width: 400px;
-    margin: 0 auto;
-    color: #3C3506;
-    user-select: none;
-    display: none;
+      padding: 20px;
+      max-width: 400px;
+      margin: 0 auto;
+      color: #3C3506;
+      display: none;
 }
 
 .buttons {
@@ -43,8 +43,14 @@ body {
     width: 100%;
 
 }
-#start, #finish , #submit{
+#start, #finish , #submit, #tryAgain{
     width: auto;
+    
+}
+
+#tryAgain{
+  display: none;
+  text-align: center;
 }
 
 .buttons:hover {
@@ -73,6 +79,17 @@ body {
    
   }
   
+  #higherScoreData {
+   
+    bottom: 10px;
+    padding: 20px;
+   display: block;
+    margin: 0 auto;
+    color: #3C3506;
+    text-align: center;
+    width: 100%;
+  }
+
   .fade-in {
     animation: fadeIn ease 1s;
     -webkit-animation: fadeIn ease 1s;
