@@ -61,19 +61,19 @@
 
         <ul>
             <li>
-                <button id="answer1" class="buttons">
+                <button id="answer1" class="buttons answer" data-value="">
 
                 </button>
             </li>
 
             <li>
-                <button id="answer2" class="buttons">
+                <button id="answer2" class="buttons answer">
 
                 </button>
             </li>
 
             <li>
-                <button id="answer3" class="buttons">
+                <button id="answer3" class="buttons answer">
 
                 </button>
             </li>
@@ -235,9 +235,7 @@ $(document).ready(function() {
 
 
         var questionTextField = $("#questions");
-        var buttonAnswer1 = $("#answer1");
-        var buttonAnswer2 = $("#answer2");
-        var buttonAnswer3 = $("#answer3");
+        var buttonAnswer = $(".answer");
         var startBtn = $("#start");
         var submitFinalScore = $("#submit");
         var tryAgainBtn = $("#tryAgain");
@@ -255,14 +253,17 @@ $(document).ready(function() {
         function questionnaire() {
 
             questionTextField.text(questions[i].question);
-            buttonAnswer1.text(questions[i].answer1.text);
-            buttonAnswer2.text(questions[i].answer2.text);
-            buttonAnswer3.text(questions[i].answer3.text);
+            $("#answer1").text(questions[i].answer1.text);
+            $("#answer1").attr("data-value", questions[i].answer1.value);
+
+            $("#answer2").text(questions[i].answer2.text);
+            $("#answer2").attr("data-value", questions[i].answer2.value);
+
+            $("#answer3").text(questions[i].answer3.text);
+            $("#answer3").attr("data-value", questions[i].answer3.value);
+
+
             i = parseInt(i) +1 ;
-            console.log(questions[i]);
-            console.log(questions[i].answer1.text);
-            console.log(questions[i].answer2.text);
-            console.log(questions[i].answer3.text);
 
             if (i === questions.length) {
                 finishedQuestionnaire();
@@ -319,39 +320,15 @@ $(document).ready(function() {
         }
 
 
-        buttonAnswer1.on("click", function () {
-
-            if (questions[i].answer1.value === true) {
+        buttonAnswer.on("click", function () {
+            if ($(this).attr("data-value")=="true") {
                 finalScore = finalScore + 100 / questions.length;
-                console.log(finalScore);
-                console.log(questions[i].answer1.value);
-               
+
+            } else {
+                timeLeft = timeLeft-1;
             }
             questionnaire();
-        })
-
-        buttonAnswer2.on("click", function () {
-
-
-            if (questions[i].answer2.value === true) {
-                finalScore = finalScore + 100 / questions.length;
-                console.log(finalScore);
-                console.log(questions[i].answer2.value);
-               
-            }
-            questionnaire();
-        })
-
-        buttonAnswer3.on("click", function () {
-
-            if (questions[i].answer3.value === true) {
-                finalScore = finalScore + 100 / questions.length;
-                console.log(finalScore);
-                console.log(questions[i].answer3.value);
-               
-            }
-            questionnaire();
-        })
+        });
 
         startBtn.on("click", function () {
             startTimer();
