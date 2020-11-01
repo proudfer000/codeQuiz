@@ -258,8 +258,11 @@ $(document).ready(function() {
             buttonAnswer1.text(questions[i].answer1.text);
             buttonAnswer2.text(questions[i].answer2.text);
             buttonAnswer3.text(questions[i].answer3.text);
-            i = parseInt(i) + 1;
-            console.log(i);
+            i = parseInt(i) +1 ;
+            console.log(questions[i]);
+            console.log(questions[i].answer1.text);
+            console.log(questions[i].answer2.text);
+            console.log(questions[i].answer3.text);
 
             if (i === questions.length) {
                 finishedQuestionnaire();
@@ -278,7 +281,7 @@ $(document).ready(function() {
 
         function startTimer() {
             timer = setInterval(function () {
-                timeLeft = timeLeft - 1;
+                timeLeft = timeLeft-1;
                 $("#timer").text("Remaining time " + timeLeft);
                 if (timeLeft == 0) {
                     finishedQuestionnaire();
@@ -322,7 +325,7 @@ $(document).ready(function() {
                 finalScore = finalScore + 100 / questions.length;
                 console.log(finalScore);
                 console.log(questions[i].answer1.value);
-                console.log(i);
+               
             }
             questionnaire();
         })
@@ -334,7 +337,7 @@ $(document).ready(function() {
                 finalScore = finalScore + 100 / questions.length;
                 console.log(finalScore);
                 console.log(questions[i].answer2.value);
-                console.log(i);
+               
             }
             questionnaire();
         })
@@ -345,7 +348,7 @@ $(document).ready(function() {
                 finalScore = finalScore + 100 / questions.length;
                 console.log(finalScore);
                 console.log(questions[i].answer3.value);
-                console.log(i);
+               
             }
             questionnaire();
         })
