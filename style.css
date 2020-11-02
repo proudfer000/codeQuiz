@@ -79,11 +79,18 @@ body {
    
   }
   
+  #submit{
+    display: none;
+  }
+
+  #nameInput, #labelNameInput{
+    display: none;
+  }
   #higherScoreData {
    
     bottom: 10px;
     padding: 20px;
-   display: block;
+   display: none;
     margin: 0 auto;
     color: #3C3506;
     text-align: center;

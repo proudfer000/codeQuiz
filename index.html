@@ -36,7 +36,7 @@
                 <span id="score"></span>
             </h2>
 
-            <label>Insert name here:</label>
+            <label for="nameInput" id="labelNameInput">Insert name here:</label>
             <br>
             <input id="nameInput" type="text" placeholder="Please Insert name here" value="">
             <br>
@@ -88,13 +88,13 @@
 
 
     <div>
-        <h3 id="higherScoreData">
+        <h3 id="higherScoreData" data-value=0>
             Highest Score
             <br>
             <span id="highestScoreName"></span>
             <br>
             <span id="higherScore"></span>
-
+            <br>
         <button id="tryAgain" class="buttons">
             Try Again
         </button>
@@ -233,8 +233,7 @@ $(document).ready(function() {
 
         ];
 
-        var scoreObject = {highScore:"",name:""}
-
+        var scoreObject = {highScore:0, name:""}
         var questionTextField = $("#questions");
         var buttonAnswer = $(".answer");
         var startBtn = $("#start");
@@ -269,12 +268,18 @@ $(document).ready(function() {
         }
 
         function finishedQuestionnaire() {
-            $("#finalScore").css({ display: "block" });
+            if(finalScore>$("#higherScore").attr("data-value")){
+                $("#submit").css({ display: "initial" });
+                $("#nameInput").css({ display: "initial" });
+                $("#labelNameInput").css({ display: "initial" });
+            } else {tryAgainBtn.css({ display: "initial" });};
+            $("#finalScore").css({ display: "initial" });
             $("#finalScore").addClass("fade-in");
             $("#score").text(Math.floor(finalScore));
             $("section").css({ display: "none" });
             timeLeft = questions.length * 5;
             i = 0;
+
             clearInterval(timer);
         }
 
@@ -291,18 +296,22 @@ $(document).ready(function() {
         function getSavedScore() {
 
             let lastScore = JSON.parse(localStorage.getItem("lastScore"));
+
             if (lastScore) {
-                console.log(lastScore);
                 if (lastScore.scoreObject.highScore) {
                     console.log(lastScore.scoreObject.highScore);
                     higherScore = (Math.floor(lastScore.scoreObject.highScore));
-                    $("#higherScore").text(higherScore + " Points");
+                    $("#higherScore").attr("data-value", higherScore)
+                    $("#higherScore").text($("#higherScore").attr("data-value") + " Points");
                 }
 
                 if (lastScore.scoreObject.name) {
                     console.log(lastScore.scoreObject.name);
                     latestInputName = lastScore.scoreObject.name;
                     $("#highestScoreName").text(latestInputName);
+                }
+                if (lastScore.scoreObject.highScore > 0) {
+                    $("#higherScoreData").css({ display: "block" });
                 }
             }
 
@@ -343,7 +352,7 @@ $(document).ready(function() {
             $("#higherScore").text(Math.floor(finalScore) + " Points");
             $("#highestScoreName").text($("#nameInput").val());
             $("#finalScore").css({ display: "none" });
-            tryAgainBtn.css({ display: "block" });
+            tryAgainBtn.css({ display: "initial" });
             saveScore();
             finalScore = 0;
         })
@@ -354,6 +363,8 @@ $(document).ready(function() {
             questionnaire();
             startTimer();
             tryAgainBtn.css({ display: "none" });
+            $("#finalScore").css({ display: "none" });
+            finalScore = 0;
 
         })
 
