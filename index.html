@@ -233,22 +233,20 @@ $(document).ready(function() {
 
         ];
 
+        var scoreObject = {highScore:"",name:""}
 
         var questionTextField = $("#questions");
         var buttonAnswer = $(".answer");
         var startBtn = $("#start");
         var submitFinalScore = $("#submit");
         var tryAgainBtn = $("#tryAgain");
-        var nameInput = $("#nameInput").val();
         var nameOutput;
         var timeLeft = questions.length * 5;
         var i = 0;
         var finalScore = 0;
-
         var timer;
         var latestInputName;
-        var higherScore;
-
+       
 
         function questionnaire() {
 
@@ -292,15 +290,18 @@ $(document).ready(function() {
 
         function getSavedScore() {
 
-            var lastScore = JSON.parse(localStorage.getItem("lastScore"));
+            let lastScore = JSON.parse(localStorage.getItem("lastScore"));
             if (lastScore) {
-                if (lastScore.score) {
-                    higherScore = (Math.floor(lastScore.score));
+                console.log(lastScore);
+                if (lastScore.scoreObject.highScore) {
+                    console.log(lastScore.scoreObject.highScore);
+                    higherScore = (Math.floor(lastScore.scoreObject.highScore));
                     $("#higherScore").text(higherScore + " Points");
                 }
 
-                if (lastScore.name) {
-                    latestInputName = lastScore.name;
+                if (lastScore.scoreObject.name) {
+                    console.log(lastScore.scoreObject.name);
+                    latestInputName = lastScore.scoreObject.name;
                     $("#highestScoreName").text(latestInputName);
                 }
             }
@@ -309,13 +310,10 @@ $(document).ready(function() {
 
 
         function saveScore() {
-            higherScore = finalScore;
-            localStorage.setItem(
-                "lastScore",
-                JSON.stringify({
-                    score: higherScore,
-                    name: nameInput
-                })
+            let nameInput = $("#nameInput").val();
+            scoreObject.highScore = finalScore;
+            scoreObject.name = nameInput;
+            localStorage.setItem("lastScore", JSON.stringify({scoreObject})
             );
         }
 
@@ -342,10 +340,9 @@ $(document).ready(function() {
         })
 
         submitFinalScore.on("click", function () {
-            $("#higherScore").text(higherScore + "Points");
-            $("#highestScoreName").text(nameInput);
+            $("#higherScore").text(Math.floor(finalScore) + " Points");
+            $("#highestScoreName").text($("#nameInput").val());
             $("#finalScore").css({ display: "none" });
-            $("#nameInput").attr("value",);
             tryAgainBtn.css({ display: "block" });
             saveScore();
             finalScore = 0;
