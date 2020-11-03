@@ -18,37 +18,37 @@
         <h1>
             Coding Quiz Challenge!
         </h1>
+        <!-- Start Button -->
         <button id="start" class="buttons">
             Start Quiz
         </button>
-
+        <!-- Finish button -->
         <button id="finish" class="buttons">
             Finish Quiz
         </button>
-
+        <!-- This will display the final score at the end of the Quiz -->
         <div id="finalScore">
-
             <h2>
                 Final Score <br>
+                <!-- This holds the value for the score -->
                 <span id="score"></span>
             </h2>
-
+            
+            <!-- Input text field for user name -->
             <br>
             <input id="nameInput" type="text" placeholder="Insert name here" value="">
             <br>
-
+            <!-- Submit button, it only appears at the end of the first try or when score its higher -->
             <button id="submit" class="buttons">
                 Submit Score
             </button>
 
         </div>
 
-
     </header>
 
-
-
     <section>
+        <!-- This will display the questions and answers -->
         <div>
             <p id="questions">
                 test questions
@@ -75,7 +75,7 @@
             </li>
 
         </ul>
-
+        <!-- This will show the remaining time -->
         <div>
             <h3 id="secondsRemaining">
                 Seconds Remaining:
@@ -88,6 +88,7 @@
     </section>
 
     <div>
+        <!-- This will display the Higher score, the value will be loaded from local storage -->
         <h3 id="higherScoreData" data-value=0>
             Highest Score
             <br>
@@ -95,6 +96,7 @@
             <br>
             <span id="higherScore"></span>
             <br>
+            <!-- Try again button -->
             <button id="tryAgain" class="buttons">
                 Try Again
             </button>
@@ -105,7 +107,9 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <script type="text/javascript">
 
+        
         $(document).ready(function () {
+            //This variable holds HTML questions, may use them later
             /*var questionsHTML = [
     
                 {
@@ -228,6 +232,7 @@
         },
 
     ];*/
+            //Holds all the questions as objects inside an array
             var questions = [
                 {
                     question: "Inside which HTML element do we put the JavaScript?",
@@ -362,24 +367,30 @@
                     answer3: { text: "==", value: "" }
                 },
             ];
-                console.log(questions.length);
-                
+                //this object holds the values that will be saved to the local storage. 
             var scoreObject = { highScore: 0, name: "" }
             var questionTextField = $("#questions");
             var buttonAnswer = $(".answer");
             var startBtn = $("#start");
             var submitFinalScore = $("#submit");
             var tryAgainBtn = $("#tryAgain");
-            var nameOutput;
+                //this var holds the value of the remaining time, time's depends on the questions array length.
             var timeLeft = questions.length * 5;
+
+                //this var its used the circle thought the array
             var i = 0;
+                //this var holds the value of the score when user respond correctly
             var finalScore = 0;
+                //this var its used to stop the setInterval function
             var timer;
-            var latestInputName;
 
-
+                //this function circle thought the questions array an show the questions and answers
             function questionnaire() {
-
+                
+                //this will finish the quiz if user reach the final object in the questions array 
+                if (i==questions.length) {
+                    finishedQuestionnaire();
+                }
                 questionTextField.text(questions[i].question);
                 $("#answer1").text(questions[i].answer1.text);
                 $("#answer1").attr("data-value", questions[i].answer1.value);
@@ -390,35 +401,41 @@
                 $("#answer3").text(questions[i].answer3.text);
                 $("#answer3").attr("data-value", questions[i].answer3.value);
 
+                //this will add 1 to the var i to circle thought the questions array
                 i = parseInt(i) + 1;
-
-                if (i === questions.length) {
-                    finishedQuestionnaire();
-                }
             }
 
+            //this function when run will finish the quiz, also will hide elements, show some other elements 
             function finishedQuestionnaire() {
                 
                 let dataValue = $("#higherScore").attr("data-value");
                 
+                //this will show the submit button at the first round of the game or when user beats higher score
                 if (finalScore > dataValue||dataValue == undefined) {
 
                     $("#submit").css({ display: "initial" });
                     $("#nameInput").css({ display: "initial" });
                     $("#labelNameInput").css({ display: "initial" });
-
+                
+                //if user fails to beat old score it will have the option to try again
                 } else { tryAgainBtn.css({ display: "initial" }); };
-
+                //this will show the finalScore element
                 $("#finalScore").css({ display: "initial" });
+                //this will add the class fade in to finalScore
                 $("#finalScore").addClass("fade-in");
+                //this will set the text of finalScore
                 $("#score").text(Math.floor(finalScore));
+                //this will hide the questions and answers element
                 $("section").css({ display: "none" });
+                //this will reset the timeLeft
                 timeLeft = questions.length * 5;
+                //this will reset the value to circle thought the questions array
                 i = 0;
-
+                //this will stop the setInterval function
                 clearInterval(timer);
             }
 
+            //this function will start the timer when timer gets to 0 it will end the quiz
             function startTimer() {
                 timer = setInterval(function () {
                     timeLeft = timeLeft - 1;
@@ -428,24 +445,26 @@
                     }
                 }, 1000);
             }
-
+            //this function will get the values from the local storage
             function getSavedScore() {
 
                 let lastScore = JSON.parse(localStorage.getItem("lastScore"));
-
+                
                 if (lastScore) {
+                    //this will get the value of the score
                     if (lastScore.scoreObject.highScore) {
                         console.log(lastScore.scoreObject.highScore);
                         let higherScore = (Math.floor(lastScore.scoreObject.highScore));
                         $("#higherScore").attr("data-value", higherScore);
                         $("#higherScore").text($("#higherScore").attr("data-value") + " Points");
                     }
-
+                    //this will get the value of the name
                     if (lastScore.scoreObject.name) {
                         console.log(lastScore.scoreObject.name);
-                        latestInputName = lastScore.scoreObject.name;
+                        let latestInputName = lastScore.scoreObject.name;
                         $("#highestScoreName").text(latestInputName);
                     }
+                    //this will only show when theres any saved score
                     if (lastScore.scoreObject.highScore > 0) {
                         $("#higherScoreData").css({ display: "block" });
                     }
@@ -453,7 +472,7 @@
 
             }
 
-
+            //this will save the score and user name to local storage
             function saveScore() {
                 let nameInput = $("#nameInput").val();
                 scoreObject.highScore = finalScore;
@@ -462,17 +481,21 @@
                 );
             }
 
-
+            //this will listen for any answer click
             buttonAnswer.on("click", function () {
+                //this will check if user clicked the correct answer and will add score depending on the length of the questions array
                 if ($(this).attr("data-value") == "true") {
                     finalScore = finalScore + 100 / questions.length;
 
                 } else {
+                    //if user answer its wrong it will remove 3 secs from the time left
                     timeLeft = timeLeft - 3;
                 }
+                
                 questionnaire();
             });
 
+            //button to start the quiz, it hides this button and shows the questions and answer element
             startBtn.on("click", function () {
                 startTimer();
                 $("section").css({ display: "block" });
@@ -483,17 +506,18 @@
                 questionnaire();
 
             })
-
+            //this button will only show at the end of the first try or when users beat the saved score
             submitFinalScore.on("click", function () {
                 $("#higherScore").text(Math.floor(finalScore) + " Points");
                 $("#highestScoreName").text($("#nameInput").val());
                 $("#finalScore").css({ display: "none" });
                 $("#higherScoreData").css({ display: "block" });
+                //this will show the try again button
                 tryAgainBtn.css({ display: "inline" });
                 saveScore();
                 finalScore = 0;
             })
-
+            //this will let the user try again
             tryAgainBtn.on("click", function () {
                 $("section").css({ display: "block" });
                 $("section").addClass("fade-in");
@@ -505,7 +529,7 @@
 
             })
 
-
+            //this function will run when pages loads or user refresh
             getSavedScore();
         });
     </script>
