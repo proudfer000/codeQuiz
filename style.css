@@ -7,46 +7,41 @@
 
 body {
     font-size: 14px;
-    background-color: #BCDBD7;
-   
+    background-color: #00D6D3;
+    font-family: 'Roboto', sans-serif;
+   color:#151414;
   }
 
   header {
     text-align: center;
     color:#3C3506;
-    font-family: "Amatic SC", cursive;
     margin-top: 10px;
     font-size: 4em;
 }
-    #finish{
-        display: none;
+      h1 {
+        font-weight: 700;
+      }
+
+      #finish{
+          display: none;
+      }
+
+      .buttons, input {
+        text-align: center;
+        color:#FFFFFF;
+        background-color: #62008F;
+        margin-top: 10px;
+        font-size: 1.5rem;
+        border-radius: 10px;
+        border: 4px solid #151414;
+        padding: 10px; 
+        width: 100%;
+        overflow: auto;
+
     }
-
-    section {
-      padding: 20px;
-      max-width: 400px;
-      margin: 0 auto;
-      color: #3C3506;
-      display: none;
-}
-
-.buttons {
-    text-align: center;
-    color:#3C3506;
-    font-family: "Josefin Sans", sans-serif;
-    background-color: tomato;
-    margin-top: 10px;
-    font-size: 1.5rem;
-    border-radius: 25px;
-    border: 2px solid #C6C908;
-    padding: 10px; 
-    width: 100%;
-
-}
-#start, #finish , #submit, #tryAgain{
-    width: auto;
-    
-}
+      #start, #finish , #submit, #tryAgain, #nameInput{
+        width: auto;
+    }
 
 #tryAgain{
   display: none;
@@ -54,14 +49,30 @@ body {
 }
 
 .buttons:hover {
-    border: 2px solid black;
+    
     cursor: pointer;
-    box-shadow: 5px 10px 18px #888888;
+    box-shadow: 5px 5px 10px #888888;
+    background-color:#4E045D ;
   }
 
- 
+  section {
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    color: #3C3506;
+    display: none;
+    background-color: #00D1CE;
+    border-radius: 10px;
+    border: 4px solid #151414;
+}
+
+    #questions{
+      font-weight: 700;
+    }
+
   #finalScore{
       display: none;
+      font-weight: 700;
   }
 
   #questions{
@@ -72,7 +83,6 @@ body {
   #timer {
     text-align: center;
     color:#3C3506;
-    font-family: "Josefin Sans", sans-serif;
     margin-top: 10px;
     font-size: 1.5rem;
     padding: 10px; 
@@ -90,12 +100,36 @@ body {
    
     bottom: 10px;
     padding: 20px;
-   display: none;
+    display: none;
     margin: 0 auto;
     color: #3C3506;
     text-align: center;
     width: 100%;
   }
+
+    h3{
+      font-size: 1.5rem;
+      font-weight: 400;
+      text-align: center;
+      
+    }
+        #highestScoreName{
+          font-weight: 700;
+        }
+
+        #higherScore{
+          font-weight: 700;
+          font-size: 1.3rem;
+        }
+
+        #secondsRemaining{
+          margin-top: 18px;
+        }
+        
+        #timer{
+          font-weight: 700;
+        }
+
 
   .fade-in {
     animation: fadeIn ease 1s;

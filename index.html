@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
-
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -27,8 +26,6 @@
             Finish Quiz
         </button>
 
-
-
         <div id="finalScore">
 
             <h2>
@@ -36,9 +33,8 @@
                 <span id="score"></span>
             </h2>
 
-            <label for="nameInput" id="labelNameInput">Insert name here:</label>
             <br>
-            <input id="nameInput" type="text" placeholder="Please Insert name here" value="">
+            <input id="nameInput" type="text" placeholder="Insert name here" value="">
             <br>
 
             <button id="submit" class="buttons">
@@ -80,12 +76,16 @@
 
         </ul>
 
-        <div id="timer">
-
+        <div>
+            <h3 id="secondsRemaining">
+                Seconds Remaining:
+                <br>
+                <span id="timer"></span>
+            </h3>
+            
         </div>
 
     </section>
-
 
     <div>
         <h3 id="higherScoreData" data-value=0>
@@ -95,394 +95,419 @@
             <br>
             <span id="higherScore"></span>
             <br>
-        <button id="tryAgain" class="buttons">
-            Try Again
-        </button>
+            <button id="tryAgain" class="buttons">
+                Try Again
+            </button>
         </h3>
 
-       
     </div>
-
-
-
 
     <script src="https://code.jquery.com/jquery.js"></script>
     <script type="text/javascript">
 
-$(document).ready(function() {
-        /*var questionsHTML = [
-
-            {
-                question: "Who is making the Web standards?",
-                answer1: { text: "Mozilla", value: "" },
-                answer2: { text: "Microsoft", value: "" },
-                answer3: { text: "The World Wide Web Consortium", value: true }
-            },
-
-            {
-                question: "What does CSS stand for?",
-                answer1: { text: "Creative Style Sheets", value: "" },
-                answer2: { text: "Colorful Style Sheets", value: "" },
-                answer3: { text: "Cascading Style Sheets", value: true }
-            },
-
-            {
-                question: "Which is the correct CSS syntax?",
-                answer1: { text: "body:color=black", value: "" },
-                answer2: { text: "{body;color:black}", value: "" },
-                answer3: { text: "body {color: black}", value: true }
-            },
-
-            {
-                question: "How do you insert a comment in a CSS file?",
-                answer1: { text: "/* this is a comment *//*", value: true },
-                answer2: { text: "/ this is a comment", value: "" },
-                answer3: { text: "// this is a comment //", value: "" }
-            },
-
-            {
-                question: "How can you make a list that lists the items with numbers?",
-                answer1: { text: "ol", value: true },
-                answer2: { text: "dl", value: "" },
-                answer3: { text: "ul", value: "" }
-            },
-
-            {
-                question: "Choose the correct HTML tag for the largest heading.",
-                answer1: { text: "head", value: "" },
-                answer2: { text: "h1", value: "" },
-                answer3: { text: "header", value: true }
-            },
-
-            {
-                question: "How do you display hyperlinks without an underline?",
-                answer1: { text: "a {text-decoration:none}", value: true },
-                answer2: { text: "a {underline:none}", value: "" },
-                answer3: { text: "a {decoration:no underline}", value: "" }
-            },
-
-            {
-                question: "How do you make a list that lists its items with squares?",
-                answer1: { text: "list-style-type: square", value: true },
-                answer2: { text: "type: 2", value: "" },
-                answer3: { text: "list-type: square", value: "" }
-            },
-
-            {
-                question: "In what form are style rules presented?",
-                answer1: { text: "selector { property= value }", value: "" },
-                answer2: { text: "selector ( property: value )", value: true },
-                answer3: { text: "selector ( property= value )", value: "" }
-            },
-
-            {
-                question: "Which property applies a color to text?",
-                answer1: { text: "text-color", value: "" },
-                answer2: { text: "color", value: true },
-                answer3: { text: "background-color", value: "" }
-            },
-
-            {
-                question: "What does the ID selector do?",
-                answer1: { text: "Apply the style to a specific element", value: true },
-                answer2: { text: "Apply the style to all the elements", value: "" },
-                answer3: { text: "Apply the style to a group of elements", value: "" }
-            },
-
-            {
-                question: "What selector should you use when applying a style to multiple elements?",
-                answer1: { text: "ID", value: "" },
-                answer2: { text: "Class", value: true },
-                answer3: { text: "Type", value: "" }
-            },
-
-            {
-                question: "Which of the following attributes of the <img> tag displays alternate text for the image?",
-                answer1: { text: "text", value: "" },
-                answer2: { text: "caption", value: "" },
-                answer3: { text: "alt", value: true }
-            },
-
-            {
-                question: "Where in the HTML document is the correct place to refer to an external style sheet?",
-                answer1: { text: "In the <body> section", value: "" },
-                answer2: { text: "At the top of the document", value: "" },
-                answer3: { text: "In the <head> section", value: true }
-            },
-
-            {
-                question: "Which HTML tag is used to define an internal style sheet?",
-                answer1: { text: "<css>", value: "" },
-                answer2: { text: "<style>", value: true },
-                answer3: { text: "<script>", value: "" }
-            },
-
-            {
-                question: "Which HTML attribute is used to define inline styles?",
-                answer1: { text: "styles", value: "" },
-                answer2: { text: "style", value: true },
-                answer3: { text: "class", value: "" }
-            },
-
-            {
-                question: "What does HTML stand for?",
-                answer1: { text: "Hyper Text Markup Language", value: true },
-                answer2: { text: "Home Tool Markup Language", value: "" },
-                answer3: { text: "Hyperlinks and Text Markup Language", value: "" }
-            },
-
-        ];*/
-        var questions = [
-            {
-                question: "Inside which HTML element do we put the JavaScript?",
-                answer1: { text: "<javascript>", value: "" },
-                answer2: { text: "<script>", value: true },
-                answer3: { text: "<js>", value: "" }},
+        $(document).ready(function () {
+            /*var questionsHTML = [
+    
                 {
-                question: "Where is the correct place to insert a JavaScript?",
-                answer1: { text: "the <head> section", value: true },
-                answer2: { text: "the <body> section", value: "" },
-                answer3: { text: "both are correct", value: "" }},
+                    question: "Who is making the Web standards?",
+                    answer1: { text: "Mozilla", value: "" },
+                    answer2: { text: "Microsoft", value: "" },
+                    answer3: { text: "The World Wide Web Consortium", value: true }
+                },
+    
                 {
-                question: "What is the correct syntax for referring to an external script called xxx.js?",
-                answer1: { text: "<script src=xxx.js", value: true },
-                answer2: { text: "<script name=xxx.js", value: "" },
-                answer3: { text: "<script href=xxx.js", value: "" }},
+                    question: "What does CSS stand for?",
+                    answer1: { text: "Creative Style Sheets", value: "" },
+                    answer2: { text: "Colorful Style Sheets", value: "" },
+                    answer3: { text: "Cascading Style Sheets", value: true }
+                },
+    
                 {
-                question: "The external JavaScript file must contain the <script> tag.",
-                answer1: { text: "false", value: true },
-                answer2: { text: "true", value: "" },
-                answer3: { text: "?", value: "" }},
+                    question: "Which is the correct CSS syntax?",
+                    answer1: { text: "body:color=black", value: "" },
+                    answer2: { text: "{body;color:black}", value: "" },
+                    answer3: { text: "body {color: black}", value: true }
+                },
+    
                 {
-                question: "How do you write <Hello World> in an alert box?",
-                answer1: { text: "alert(hello world)", value: true },
-                answer2: { text: "alertBox(hello world)", value: "" },
-                answer3: { text: "msgBox(hello world)", value: "" }},
-                {
-                question: "How do you create a function in JavaScript?",
-                answer1: { text: "function:myFunction()", value: "" },
-                answer2: { text: "function myFunction()", value: true },
-                answer3: { text: "function=myFunction()", value: "" }},
-                {
-                question: "How do you call a function named <myFunction>?",
-                answer1: { text: "call Function myFunction", value: "" },
-                answer2: { text: "call myFunction", value: "" },
-                answer3: { text: "MyFunction()", value: true }},
-                {
-                question: "How to write an IF statement in JavaScript?",
-                answer1: { text: "if i=5", value: "" },
-                answer2: { text: "if(i==5)", value: true },
-                answer3: { text: "if i==5 then", value: "" }},
-                {
-                question: "ow to write an IF statement for executing some code if <i> is NOT equal to 5?",
-                answer1: { text: "if (i!=5)", value: true },
-                answer2: { text: "if i!=5", value: "" },
-                answer3: { text: "if i<>5", value: "" }},
-                {
-                question: "How does a WHILE loop start?",
-                answer1: { text: "while (i<=10;i++)", value: "" },
-                answer2: { text: "while (i<=10)", value: true },
-                answer3: { text: "while i=10", value: "" }},
-                {
-                question: "How does a FOR loop start?",
-                answer1: { text: "for (i<=5;i++)", value: "" },
-                answer2: { text: "for i = 1 to 5", value: "" },
-                answer3: { text: "for (i=0; i<=5; i++)", value: true }},
-                {
-                question: "How can you add a comment in a JavaScript?",
-                answer1: { text: "//This is a comment", value: true },
-                answer2: { text: "'This is a comment'", value: "" },
-                answer3: { text: "<!This is a comment--", value: "" }},
-                {
-                question: "How to insert a comment that has more than one line?",
-                answer1: { text: "<This comment has more than one line>", value: "" },
-                answer2: { text: "/*This comment has more than one line*/", value: true },
-                answer3: { text: "//This comment has more than one line//", value: "" }},
-                {
-                question: "What is the correct way to write a JavaScript array?",
-                answer1: { text: "var colors = ['red', 'green', 'blue']", value: true },
-                answer2: { text: "var colors = 'red', 'green', 'blue'", value: "" },
-                answer3: { text: "var colors = ('red', 'green', 'blue')", value: "" }},
-                {
-                question: "How do you round the number 7.25, to the nearest integer?",
-                answer1: { text: "round(7.25)", value: "" },
-                answer2: { text: "rnd(7.25)", value: "" },
-                answer3: { text: "Math.round(7.25)", value: true }},
-                {
-                question: "How do you find the number with the highest value of x and y?",
-                answer1: { text: "Math.ceil(x,y)", value: true },
-                answer2: { text: "Math.max(x,y)", value: "" },
-                answer3: { text: "ceil(x,y)", value: "" }},
-                {
-                question: "What is the correct JavaScript syntax for opening a new window called 'w2' ?",
-                answer1: { text: "w2 = window.open('http://w3schools.com')", value: true },
-                answer2: { text: "w2 = window.new('http://w3schools.com')", value: "" },
-                answer3: { text: "w2 = window.target:blank('http://w3schools.com')", value: "" }},
-                {
-                question: "JavaScript is the same as Java.",
-                answer1: { text: "true", value: "" },
-                answer2: { text: "false", value: true },
-                answer3: { text: "?", value: "" }},
-                {
-                question: "How can you detect the client's browser name?",
-                answer1: { text: "navigator.appName", value: true },
-                answer2: { text: "browser name", value: "" },
-                answer3: { text: "client.navName", value: "" }},
-                {
-                question: "Which event occurs when the user clicks on an HTML element?",
-                answer1: { text: "onchange", value: "" },
-                answer2: { text: "onclick", value: true },
-                answer3: { text: "onmouseclik", value: "" }},
-                {
-                question: "How do you declare a JavaScript variable?",
-                answer1: { text: "var carName", value: true },
-                answer2: { text: "variable carName", value: "" },
-                answer3: { text: "v carName", value: "" }},
-                {
-                question: "Which operator is used to assign a value to a variable?",
-                answer1: { text: "=", value: true },
-                answer2: { text: "*", value: "" },
-                answer3: { text: "==", value: "" }},
-        ];
+                    question: "How do you insert a comment in a CSS file?",
+                    answer1: { text: "/* this is a comment *//*", value: true },
+            answer2: { text: "/ this is a comment", value: "" },
+            answer3: { text: "// this is a comment //", value: "" }
+        },
 
-        var scoreObject = {highScore:0, name:""}
-        var questionTextField = $("#questions");
-        var buttonAnswer = $(".answer");
-        var startBtn = $("#start");
-        var submitFinalScore = $("#submit");
-        var tryAgainBtn = $("#tryAgain");
-        var nameOutput;
-        var timeLeft = questions.length * 5;
-        var i = 0;
-        var finalScore = 0;
-        var timer;
-        var latestInputName;
-       
+        {
+            question: "How can you make a list that lists the items with numbers?",
+            answer1: { text: "ol", value: true },
+            answer2: { text: "dl", value: "" },
+            answer3: { text: "ul", value: "" }
+        },
 
-        function questionnaire() {
+        {
+            question: "Choose the correct HTML tag for the largest heading.",
+            answer1: { text: "head", value: "" },
+            answer2: { text: "h1", value: "" },
+            answer3: { text: "header", value: true }
+        },
 
-            questionTextField.text(questions[i].question);
-            $("#answer1").text(questions[i].answer1.text);
-            $("#answer1").attr("data-value", questions[i].answer1.value);
+        {
+            question: "How do you display hyperlinks without an underline?",
+            answer1: { text: "a {text-decoration:none}", value: true },
+            answer2: { text: "a {underline:none}", value: "" },
+            answer3: { text: "a {decoration:no underline}", value: "" }
+        },
 
-            $("#answer2").text(questions[i].answer2.text);
-            $("#answer2").attr("data-value", questions[i].answer2.value);
+        {
+            question: "How do you make a list that lists its items with squares?",
+            answer1: { text: "list-style-type: square", value: true },
+            answer2: { text: "type: 2", value: "" },
+            answer3: { text: "list-type: square", value: "" }
+        },
 
-            $("#answer3").text(questions[i].answer3.text);
-            $("#answer3").attr("data-value", questions[i].answer3.value);
+        {
+            question: "In what form are style rules presented?",
+            answer1: { text: "selector { property= value }", value: "" },
+            answer2: { text: "selector ( property: value )", value: true },
+            answer3: { text: "selector ( property= value )", value: "" }
+        },
+
+        {
+            question: "Which property applies a color to text?",
+            answer1: { text: "text-color", value: "" },
+            answer2: { text: "color", value: true },
+            answer3: { text: "background-color", value: "" }
+        },
+
+        {
+            question: "What does the ID selector do?",
+            answer1: { text: "Apply the style to a specific element", value: true },
+            answer2: { text: "Apply the style to all the elements", value: "" },
+            answer3: { text: "Apply the style to a group of elements", value: "" }
+        },
+
+        {
+            question: "What selector should you use when applying a style to multiple elements?",
+            answer1: { text: "ID", value: "" },
+            answer2: { text: "Class", value: true },
+            answer3: { text: "Type", value: "" }
+        },
+
+        {
+            question: "Which of the following attributes of the <img> tag displays alternate text for the image?",
+            answer1: { text: "text", value: "" },
+            answer2: { text: "caption", value: "" },
+            answer3: { text: "alt", value: true }
+        },
+
+        {
+            question: "Where in the HTML document is the correct place to refer to an external style sheet?",
+            answer1: { text: "In the <body> section", value: "" },
+            answer2: { text: "At the top of the document", value: "" },
+            answer3: { text: "In the <head> section", value: true }
+        },
+
+        {
+            question: "Which HTML tag is used to define an internal style sheet?",
+            answer1: { text: "<css>", value: "" },
+            answer2: { text: "<style>", value: true },
+            answer3: { text: "<script>", value: "" }
+        },
+
+        {
+            question: "Which HTML attribute is used to define inline styles?",
+            answer1: { text: "styles", value: "" },
+            answer2: { text: "style", value: true },
+            answer3: { text: "class", value: "" }
+        },
+
+        {
+            question: "What does HTML stand for?",
+            answer1: { text: "Hyper Text Markup Language", value: true },
+            answer2: { text: "Home Tool Markup Language", value: "" },
+            answer3: { text: "Hyperlinks and Text Markup Language", value: "" }
+        },
+
+    ];*/
+            var questions = [
+                {
+                    question: "Inside which HTML element do we put the JavaScript?",
+                    answer1: { text: "<javascript>", value: "" },
+                    answer2: { text: "<script>", value: true },
+                    answer3: { text: "<js>", value: "" }
+                },
+                {
+                    question: "Where is the correct place to insert a JavaScript?",
+                    answer1: { text: "the <head> section", value: true },
+                    answer2: { text: "the <body> section", value: "" },
+                    answer3: { text: "both are correct", value: "" }
+                },
+                {
+                    question: "What is the correct syntax for referring to an external script called xxx.js?",
+                    answer1: { text: "<script src='xxx.js'", value: true },
+                    answer2: { text: "<script name=xxx.js", value: "" },
+                    answer3: { text: "<script href=xxx.js", value: "" }
+                },
+                {
+                    question: "The external JavaScript file must contain the <script> tag.",
+                    answer1: { text: "false", value: true },
+                    answer2: { text: "true", value: "" },
+                    answer3: { text: "?", value: "" }
+                },
+                {
+                    question: "How do you write <Hello World> in an alert box?",
+                    answer1: { text: "alert('hello world')", value: true },
+                    answer2: { text: "alertBox(hello world)", value: "" },
+                    answer3: { text: "msgBox(hello world)", value: "" }
+                },
+                {
+                    question: "How do you create a function in JavaScript?",
+                    answer1: { text: "function:myFunction()", value: "" },
+                    answer2: { text: "function myFunction()", value: true },
+                    answer3: { text: "function=myFunction()", value: "" }
+                },
+                {
+                    question: "How do you call a function named <myFunction>?",
+                    answer1: { text: "call Function myFunction", value: "" },
+                    answer2: { text: "call myFunction", value: "" },
+                    answer3: { text: "MyFunction()", value: true }
+                },
+                {
+                    question: "How to write an IF statement in JavaScript?",
+                    answer1: { text: "if i=5", value: "" },
+                    answer2: { text: "if(i==5)", value: true },
+                    answer3: { text: "if i==5 then", value: "" }
+                },
+                {
+                    question: "How to write an IF statement for executing some code if <i> is NOT equal to 5?",
+                    answer1: { text: "if (i!=5)", value: true },
+                    answer2: { text: "if i!=5", value: "" },
+                    answer3: { text: "if i<>5", value: "" }
+                },
+                {
+                    question: "How does a WHILE loop start?",
+                    answer1: { text: "while (i<=10;i++)", value: "" },
+                    answer2: { text: "while (i<=10)", value: true },
+                    answer3: { text: "while i=10", value: "" }
+                },
+                {
+                    question: "How does a FOR loop start?",
+                    answer1: { text: "for (i<=5;i++)", value: "" },
+                    answer2: { text: "for i = 1 to 5", value: "" },
+                    answer3: { text: "for (i=0; i<=5; i++)", value: true }
+                },
+                {
+                    question: "How can you add a comment in a JavaScript?",
+                    answer1: { text: "//This is a comment", value: true },
+                    answer2: { text: "'This is a comment'", value: "" },
+                    answer3: { text: "<!This is a comment--", value: "" }
+                },
+                {
+                    question: "How to insert a comment that has more than one line?",
+                    answer1: { text: "<This comment has more than one line>", value: "" },
+                    answer2: { text: "/*This comment has more than one line*/", value: true },
+                    answer3: { text: "//This comment has more than one line//", value: "" }
+                },
+                {
+                    question: "What is the correct way to write a JavaScript array?",
+                    answer1: { text: "var colors = ['red', 'green', 'blue']", value: true },
+                    answer2: { text: "var colors = 'red', 'green', 'blue'", value: "" },
+                    answer3: { text: "var colors = ('red', 'green', 'blue')", value: "" }
+                },
+                {
+                    question: "How do you round the number 7.25, to the nearest integer?",
+                    answer1: { text: "round(7.25)", value: "" },
+                    answer2: { text: "rnd(7.25)", value: "" },
+                    answer3: { text: "Math.round(7.25)", value: true }
+                },
+                {
+                    question: "How do you find the number with the highest value of x and y?",
+                    answer1: { text: "Math.ceil(x,y)", value: true },
+                    answer2: { text: "Math.max(x,y)", value: "" },
+                    answer3: { text: "ceil(x,y)", value: "" }
+                },
+                {
+                    question: "What is the correct JavaScript syntax for opening a new window called 'w2' ?",
+                    answer1: { text: "w2 = window.open('http://w3schools.com')", value: true },
+                    answer2: { text: "w2 = window.new('http://w3schools.com')", value: "" },
+                    answer3: { text: "w2 = window.target:blank('http://w3schools.com')", value: "" }
+                },
+                {
+                    question: "JavaScript is the same as Java.",
+                    answer1: { text: "true", value: "" },
+                    answer2: { text: "false", value: true },
+                    answer3: { text: "?", value: "" }
+                },
+                {
+                    question: "How can you detect the client's browser name?",
+                    answer1: { text: "navigator.appName", value: true },
+                    answer2: { text: "browser name", value: "" },
+                    answer3: { text: "client.navName", value: "" }
+                },
+                {
+                    question: "Which event occurs when the user clicks on an HTML element?",
+                    answer1: { text: "onchange", value: "" },
+                    answer2: { text: "onclick", value: true },
+                    answer3: { text: "onmouseclik", value: "" }
+                },
+                {
+                    question: "How do you declare a JavaScript variable?",
+                    answer1: { text: "var carName", value: true },
+                    answer2: { text: "variable carName", value: "" },
+                    answer3: { text: "v carName", value: "" }
+                },
+                {
+                    question: "Which operator is used to assign a value to a variable?",
+                    answer1: { text: "=", value: true },
+                    answer2: { text: "*", value: "" },
+                    answer3: { text: "==", value: "" }
+                },
+            ];
+
+            var scoreObject = { highScore: 0, name: "" }
+            var questionTextField = $("#questions");
+            var buttonAnswer = $(".answer");
+            var startBtn = $("#start");
+            var submitFinalScore = $("#submit");
+            var tryAgainBtn = $("#tryAgain");
+            var nameOutput;
+            var timeLeft = questions.length * 5;
+            var i = 0;
+            var finalScore = 0;
+            var timer;
+            var latestInputName;
 
 
-            i = parseInt(i) +1 ;
+            function questionnaire() {
 
-            if (i === questions.length) {
-                finishedQuestionnaire();
-            }
-        }
+                questionTextField.text(questions[i].question);
+                $("#answer1").text(questions[i].answer1.text);
+                $("#answer1").attr("data-value", questions[i].answer1.value);
 
-        function finishedQuestionnaire() {
-            if(finalScore>$("#higherScore").attr("data-value")){
-                $("#submit").css({ display: "initial" });
-                $("#nameInput").css({ display: "initial" });
-                $("#labelNameInput").css({ display: "initial" });
-            } else {tryAgainBtn.css({ display: "initial" });};
-            $("#finalScore").css({ display: "initial" });
-            $("#finalScore").addClass("fade-in");
-            $("#score").text(Math.floor(finalScore));
-            $("section").css({ display: "none" });
-            timeLeft = questions.length * 5;
-            i = 0;
+                $("#answer2").text(questions[i].answer2.text);
+                $("#answer2").attr("data-value", questions[i].answer2.value);
 
-            clearInterval(timer);
-        }
+                $("#answer3").text(questions[i].answer3.text);
+                $("#answer3").attr("data-value", questions[i].answer3.value);
 
-        function startTimer() {
-            timer = setInterval(function () {
-                timeLeft = timeLeft-1;
-                $("#timer").text("Remaining time " + timeLeft);
-                if (timeLeft == 0) {
+
+                i = parseInt(i) + 1;
+
+                if (i === questions.length) {
                     finishedQuestionnaire();
                 }
-            }, 1000);
-        }
-
-        function getSavedScore() {
-
-            let lastScore = JSON.parse(localStorage.getItem("lastScore"));
-
-            if (lastScore) {
-                if (lastScore.scoreObject.highScore) {
-                    console.log(lastScore.scoreObject.highScore);
-                    higherScore = (Math.floor(lastScore.scoreObject.highScore));
-                    $("#higherScore").attr("data-value", higherScore)
-                    $("#higherScore").text($("#higherScore").attr("data-value") + " Points");
-                }
-
-                if (lastScore.scoreObject.name) {
-                    console.log(lastScore.scoreObject.name);
-                    latestInputName = lastScore.scoreObject.name;
-                    $("#highestScoreName").text(latestInputName);
-                }
-                if (lastScore.scoreObject.highScore > 0) {
-                    $("#higherScoreData").css({ display: "block" });
-                }
             }
 
-        }
+            function finishedQuestionnaire() {
+                
+                let dataValue = $("#higherScore").attr("data-value");
+                
+                if (finalScore > dataValue||dataValue == undefined) {
+                   
+                    $("#submit").css({ display: "initial" });
+                    $("#nameInput").css({ display: "initial" });
+                    $("#labelNameInput").css({ display: "initial" });
 
+                } else { tryAgainBtn.css({ display: "initial" }); };
 
-        function saveScore() {
-            let nameInput = $("#nameInput").val();
-            scoreObject.highScore = finalScore;
-            scoreObject.name = nameInput;
-            localStorage.setItem("lastScore", JSON.stringify({scoreObject})
-            );
-        }
+                $("#finalScore").css({ display: "initial" });
+                $("#finalScore").addClass("fade-in");
+                $("#score").text(Math.floor(finalScore));
+                $("section").css({ display: "none" });
+                timeLeft = questions.length * 5;
+                i = 0;
 
-
-        buttonAnswer.on("click", function () {
-            if ($(this).attr("data-value")=="true") {
-                finalScore = finalScore + 100 / questions.length;
-
-            } else {
-                timeLeft = timeLeft-1;
+                clearInterval(timer);
             }
-            questionnaire();
+
+            function startTimer() {
+                timer = setInterval(function () {
+                    timeLeft = timeLeft - 1;
+                    $("#timer").text(timeLeft);
+                    if (timeLeft == 0) {
+                        finishedQuestionnaire();
+                    }
+                }, 1000);
+            }
+
+            function getSavedScore() {
+
+                let lastScore = JSON.parse(localStorage.getItem("lastScore"));
+
+                if (lastScore) {
+                    if (lastScore.scoreObject.highScore) {
+                        console.log(lastScore.scoreObject.highScore);
+                        let higherScore = (Math.floor(lastScore.scoreObject.highScore));
+                        $("#higherScore").attr("data-value", higherScore);
+                        $("#higherScore").text($("#higherScore").attr("data-value") + " Points");
+                    }
+
+                    if (lastScore.scoreObject.name) {
+                        console.log(lastScore.scoreObject.name);
+                        latestInputName = lastScore.scoreObject.name;
+                        $("#highestScoreName").text(latestInputName);
+                    }
+                    if (lastScore.scoreObject.highScore > 0) {
+                        $("#higherScoreData").css({ display: "block" });
+                    }
+                }
+
+            }
+
+
+            function saveScore() {
+                let nameInput = $("#nameInput").val();
+                scoreObject.highScore = finalScore;
+                scoreObject.name = nameInput;
+                localStorage.setItem("lastScore", JSON.stringify({ scoreObject })
+                );
+            }
+
+
+            buttonAnswer.on("click", function () {
+                if ($(this).attr("data-value") == "true") {
+                    finalScore = finalScore + 100 / questions.length;
+
+                } else {
+                    timeLeft = timeLeft - 1;
+                }
+                questionnaire();
+            });
+
+            startBtn.on("click", function () {
+                startTimer();
+                $("section").css({ display: "block" });
+                $("section").addClass("fade-in");
+                startBtn.css({ display: "none" });
+                $("h1").css({ display: "none" });
+
+                questionnaire();
+
+            })
+
+            submitFinalScore.on("click", function () {
+                $("#higherScore").text(Math.floor(finalScore) + " Points");
+                $("#highestScoreName").text($("#nameInput").val());
+                $("#finalScore").css({ display: "none" });
+                $("#higherScoreData").css({ display: "block" });
+                tryAgainBtn.css({ display: "inline" });
+                saveScore();
+                finalScore = 0;
+            })
+
+            tryAgainBtn.on("click", function () {
+                $("section").css({ display: "block" });
+                $("section").addClass("fade-in");
+                questionnaire();
+                startTimer();
+                tryAgainBtn.css({ display: "none" });
+                $("#finalScore").css({ display: "none" });
+                finalScore = 0;
+
+            })
+
+
+            getSavedScore();
         });
-
-        startBtn.on("click", function () {
-            startTimer();
-            $("section").css({ display: "block" });
-            $("section").addClass("fade-in");
-            startBtn.css({ display: "none" });
-            $("h1").css({ display: "none" });
-
-            questionnaire();
-
-        })
-
-        submitFinalScore.on("click", function () {
-            $("#higherScore").text(Math.floor(finalScore) + " Points");
-            $("#highestScoreName").text($("#nameInput").val());
-            $("#finalScore").css({ display: "none" });
-            tryAgainBtn.css({ display: "initial" });
-            saveScore();
-            finalScore = 0;
-        })
-
-        tryAgainBtn.on("click", function(){
-            $("section").css({ display: "block" });
-            $("section").addClass("fade-in");
-            questionnaire();
-            startTimer();
-            tryAgainBtn.css({ display: "none" });
-            $("#finalScore").css({ display: "none" });
-            finalScore = 0;
-
-        })
-
-
-        getSavedScore();
-    });
     </script>
 
 </body>
