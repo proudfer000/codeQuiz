@@ -1,7 +1,7 @@
 # Code Quiz
 
 This Code quiz will test your general knowledge about Javascript.
-
+[link to deployed app](https://proudfer000.github.io/codeQuiz/)
 ![Image of Start Screen](assets/img1.png)
 ## Usage
 
@@ -18,4 +18,4 @@ Highest Score will only show up when theres actually a score to show.
 ![Image of Try again](assets/img4.png)
 ![Image of Try again](assets/img5.png)
 
-###Hope you Enjoy it!!!!
+### Hope you Enjoy it!!!
