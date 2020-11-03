@@ -362,7 +362,8 @@
                     answer3: { text: "==", value: "" }
                 },
             ];
-
+                console.log(questions.length);
+                
             var scoreObject = { highScore: 0, name: "" }
             var questionTextField = $("#questions");
             var buttonAnswer = $(".answer");
@@ -389,7 +390,6 @@
                 $("#answer3").text(questions[i].answer3.text);
                 $("#answer3").attr("data-value", questions[i].answer3.value);
 
-
                 i = parseInt(i) + 1;
 
                 if (i === questions.length) {
@@ -402,7 +402,7 @@
                 let dataValue = $("#higherScore").attr("data-value");
                 
                 if (finalScore > dataValue||dataValue == undefined) {
-                   
+
                     $("#submit").css({ display: "initial" });
                     $("#nameInput").css({ display: "initial" });
                     $("#labelNameInput").css({ display: "initial" });
@@ -468,7 +468,7 @@
                     finalScore = finalScore + 100 / questions.length;
 
                 } else {
-                    timeLeft = timeLeft - 1;
+                    timeLeft = timeLeft - 3;
                 }
                 questionnaire();
             });
