@@ -1,7 +1,9 @@
 # Code Quiz
 
 This Code quiz will test your general knowledge about Javascript.
+# 
 [link to deployed app](https://proudfer000.github.io/codeQuiz/)
+#
 ![Image of Start Screen](assets/img1.png)
 ## Usage
 
