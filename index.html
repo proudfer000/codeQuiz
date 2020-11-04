@@ -384,6 +384,8 @@
                 //this var its used to stop the setInterval function
             var timer;
 
+            var temporaryScore;
+
                 //this function circle thought the questions array an show the questions and answers
             function questionnaire() {
                 
@@ -408,10 +410,10 @@
             //this function when run will finish the quiz, also will hide elements, show some other elements 
             function finishedQuestionnaire() {
                 
-                let dataValue = $("#higherScore").attr("data-value");
+                
                 
                 //this will show the submit button at the first round of the game or when user beats higher score
-                if (finalScore > dataValue||dataValue == undefined) {
+                if (finalScore > temporaryScore||temporaryScore == undefined) {
 
                     $("#submit").css({ display: "initial" });
                     $("#nameInput").css({ display: "initial" });
@@ -457,6 +459,7 @@
                         let higherScore = (Math.floor(lastScore.scoreObject.highScore));
                         $("#higherScore").attr("data-value", higherScore);
                         $("#higherScore").text($("#higherScore").attr("data-value") + " Points");
+                        temporaryScore = higherScore
                     }
                     //this will get the value of the name
                     if (lastScore.scoreObject.name) {
